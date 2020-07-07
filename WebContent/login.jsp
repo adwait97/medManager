@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <style>
 		body {background-color: powderblue;}
-		p    {color: red;}
 		h1	 {color: white}
 	</style>
 </head>
@@ -16,11 +15,11 @@
         <h1>Med-Manager Login</h1><hr>
     </div><br><br><br>
     <div align="center">
-    	<h2><u>Enter Credentials</u></h2>
+    	<h2><u><strong>Enter Credentials</strong></u></h2>
         <form action="validate" method="post">
         <table border="1">
             <tr>
-                <th>ManagerID: </th>
+                <th>Manager ID: </th>
                 <td>
                     <input type="text" name="mid" size="45"/>
                 </td>
@@ -37,7 +36,7 @@
                 </td>
             </tr>
         </table><br>
-        <p>New manager? Set up your account <a href="new">here</a> today!</p>
+        <p>New manager? Set up your account <a href="registration.jsp">here</a> today!</p>
         </form>
     </div>   
 </body>

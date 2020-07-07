@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import models.Managers;
+import models.medication;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -36,6 +37,7 @@ public class MasterController extends HttpServlet {
     public void init() {
         mmdbDAO = new MMdbDAO(); // enable access to database upon initialization
     }
+    
  
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

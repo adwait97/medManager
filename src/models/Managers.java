@@ -8,6 +8,13 @@ public class Managers {
 	public String password;
 	public String email;
 	
+	public Managers(String firstname, String lastname, String email, String password) {
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.password = password;
+		this.email = email;
+	}
+
 	public Managers() {};
 	
 	public Managers(int managerid, String firstname) {

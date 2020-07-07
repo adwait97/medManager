@@ -13,29 +13,38 @@
 <meta charset="ISO-8859-1">
 <title>Manager Info</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<style>
+	body {background-color: powderblue;}
+	p    {color: red;}
+	</style>
 </head>
 
 <body>
-	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  		<ul class="navbar-nav">
-    		<li class="nav-item">
-      			<a class="nav-link" href="home.html">Home</a>
-    		</li>
-    		<li class="nav-item">
-      			<a class="nav-link" href="addin.html">Inventory</a>
-    		</li>
-    		<li class="nav-item">
-      			<a class="nav-link" href="report.html">Report</a>
-    		</li>
-  		</ul>
-  		<ul align="right" class="navbar-nav"><a class="navbar-brand" href="logout">Logout</a></ul>
-	</nav>
+		<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <a class="navbar-brand" href="login.jsp">Logout</a>
+  
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="home.jsp">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="inventory.jsp">Inventory</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="report.jsp">Report</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="showAccount">Account</a>
+    </li>
+  </ul>
+</nav>
 	<br>
 	<div align="center">
 		<caption>
-			<u>Manager Information</u><br>
-		</caption><br>
-		<table border=2>
+			<h1>Manager Information</h1><br>
+		</caption>
+		<table class="table table-dark table-hover">
 			<tr>
                 <th>First Name: </th>
                 <td>
