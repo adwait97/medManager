@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import models.Managers;
+import models.Medications;
+import models.Orders;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -94,5 +96,82 @@ public class MMdbDAO {
     	ps.close();
     	disconnect();
     	return result;
+    }
+    
+    //method to update medication inventory 
+    public void updateMeds(long ndc, int quantity) throws IOException, SQLException{
+    	con_func();
+    	String q = "update medications m set m.quantity = m.quantity - ? where m.ndc = ?";
+    	ps = (PreparedStatement) con.prepareStatement(q);
+    	ps.setInt(1, quantity);
+    	ps.setLong(2,  ndc);
+    	ps.executeUpdate();
+    	ps.close();
+    	disconnect();
+    	System.out.println("--Med quantity updated--");
+    }
+    
+    //entry point to db to add order
+    public boolean insertOrder(String cname, long ndc, String email, int quantity) throws SQLException{
+    	con_func();
+    	String q = "insert into orders(customername, ndc, email, quantity, date) values (?, ?, ?, ?, curdate())";
+    	ps = (PreparedStatement) con.prepareStatement(q);
+    	ps.setString(1, cname);
+    	ps.setLong(2, ndc);
+    	ps.setString(3, email);
+    	ps.setInt(4, quantity);
+    	boolean tupleInserted = ps.executeUpdate() > 0;
+    	ps.close();
+    	disconnect();
+    	System.out.println("\n--New Order Added--");
+    	return tupleInserted;
+    }
+    
+    //method to populate inventory page with 
+    public List<Medications> populateInventory() throws SQLException{
+    	con_func();
+    	List<Medications> inv = new ArrayList<Medications>(); // TODO - identify DESIGN PATTERN
+    	String sql = "select * from medications";
+    	statement = (Statement) con.createStatement();
+    	rs = statement.executeQuery(sql);
+    	while(rs.next()) {
+    		String name = rs.getString("name");
+    		long ndc = rs.getLong("ndc");
+    		int strength = rs.getInt("strength");
+    		int quantity = rs.getInt("quantity");
+    		String schedule = rs.getString("schedule");
+    		Medications med = new Medications(name, ndc, strength, quantity, schedule);
+    		inv.add(med);
+    	}
+    	rs.close();
+    	statement.close();
+    	disconnect();
+    	return inv;
+    }
+    
+    //TODO - replace all reports by order by schedule
+    public List<Orders> populateOrders() throws SQLException{
+    	con_func();
+    	System.out.println("In popOrders");
+    	List<Orders> allOrders = new ArrayList<Orders>();
+    	String sql = "select o.orderid, o.ndc, o.customername, o.date, o.quantity, m.strength, o.email "
+    			+ "from orders o, medications m where o.ndc = m.ndc order by date";
+    	statement = (Statement) con.createStatement();
+    	rs = statement.executeQuery(sql);
+    	while(rs.next()) {
+    		int orderid = rs.getInt("orderid");
+    		String cname = rs.getString("customername");
+    		long ndc = rs.getLong("ndc");
+    		java.util.Date d = new java.util.Date(rs.getDate("date").getTime()); // SQL Date -> util.Date
+    		int quantity = rs.getInt("quantity");
+    		int strength = rs.getInt("strength");
+    		String email = rs.getString("email");
+    		Orders o = new Orders(orderid, cname, ndc, email, quantity, d, strength);
+    		allOrders.add(o);
+    	}
+    	rs.close();
+    	statement.close();
+    	disconnect();
+    	return allOrders;
     }
 }

@@ -8,7 +8,7 @@ public class Managers {
 	public String password;
 	public String email;
 	
-	public Managers() {};
+	public Managers() {}
 	
 	public Managers(int managerid, String firstname) {
 		this.managerid = managerid;

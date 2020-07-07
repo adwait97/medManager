@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import models.Managers;
+import models.Medications;
+import models.Orders;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -57,6 +59,21 @@ public class MasterController extends HttpServlet {
             case "/showAccount":
             	accountInfo(request, response);
             	break;
+            case "/addOrder":
+            	addOrder(request, response);
+            	break;
+            case "/showHome":
+            	showHome(request, response);
+            	break;
+            case "/showReports":
+            	showReports(request, response);
+            	break;
+            case "/new":
+            	addManager(request, response);
+            	break;
+            case "/inventory":
+            	showInventory(request, response);
+            	break;
 //            default:          	
 //              break;
             }
@@ -81,11 +98,32 @@ public class MasterController extends HttpServlet {
     		Managers manager = mmdbDAO.getManager(managerid, pword);
     		session = request.getSession();
     		session.setAttribute("currentManagersObject", manager);
+    		session.setAttribute("m_onduty", manager.getFirstname());
     		response.sendRedirect("home.jsp");
     	}
     	else {
     		out.print("<script>alert('--Log-in failed. Try again.--'); window.location='login.jsp' </script>");
     	}
+    	out.flush();out.close();
+    }
+    
+    private void showHome(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException{
+    	response.sendRedirect("home.jsp");
+    }
+    
+    //method to add order to respective table in db
+    private void addOrder(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException{
+    	String c_name = (String) request.getParameter("customername");
+    	long ndc = Long.parseLong((String) request.getParameter("ndc"));
+    	int q = Integer.parseInt((String) request.getParameter("quantity"));
+    	String em = (String) request.getParameter("email");
+    	PrintWriter out = response.getWriter();
+    	mmdbDAO.updateMeds(ndc, q);
+    	if(mmdbDAO.insertOrder(c_name, ndc, em, q)) {
+    		out.print("<script>alert('--Order inserted successfully--'); window.location='home.jsp' </script>");
+    	}
+    	else
+    		out.print("<script>alert('--Order insert failed. Try again.--'); window.location='home.jsp' </script>");
     	out.flush();out.close();
     }
     
@@ -107,6 +145,27 @@ public class MasterController extends HttpServlet {
     	
     	RequestDispatcher rd = getServletContext().getRequestDispatcher("/account.jsp"); // getServletContext required
     	rd.forward(request,  response);
+    }
+    
+    private void showReports(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
+    	List<Orders> order_list = mmdbDAO.populateOrders();
+    	request.setAttribute("allOrders", order_list);
+    	//System.out.println("------inShowReports: "+order_list.get(0).getCustomername());
+    	RequestDispatcher rd = getServletContext().getRequestDispatcher("/orderReports.jsp");
+    	rd.forward(request,  response);
+    }
+    
+    private void showInventory(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
+    	List<Medications> inventory = mmdbDAO.populateInventory();
+    	request.setAttribute("populatedInventory", inventory);
+    	System.out.println("---------Here in showInv---------");
+    	RequestDispatcher rd = getServletContext().getRequestDispatcher("/inventory.jsp"); // getServletContext required
+    	rd.forward(request,  response);
+    }
+    
+    //method for adding manager to database of registered managers
+    private void addManager(HttpServletRequest request, HttpServletResponse response)throws SQLException, IOException{
+    	//response.sendRedirect("newManagerForm.jsp");
     }
 
 }
