@@ -33,6 +33,7 @@
 </nav><hr><br>
 
 <div align="center">
+	<h1>Stocked Inventory</h1><br>
 	<c:forEach var="m" items="${populatedInventory}" >
 		<table border=2>
 			<tr>

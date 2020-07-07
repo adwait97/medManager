@@ -40,9 +40,10 @@
 </nav><hr><br>
 
 	<div align="center">
-	<h2>
+	<h1>
        Manager on duty: <u><%out.print(session.getAttribute("m_onduty")); %></u>
-    </h2>
+    </h1><br><br>
+    <h2><b>Fill Order</b></h2>
         <form action="addOrder" method="post">
         <table border="1">    
             <tr>

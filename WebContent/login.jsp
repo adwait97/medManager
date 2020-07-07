@@ -8,7 +8,8 @@
     <style>
 		body {background-color: powderblue;}
 		p    {color: red;}
-		h1	 {color: white}
+		h1	 {color: grey}
+		h2	 {color:grey}
 	</style>
 </head>
 <body>
