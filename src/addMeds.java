@@ -1,39 +1,50 @@
 import java.io.IOException;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import models.medication;
 
 
+public class addMeds extends addTemplate {
+	String Name;
+	String NDC;
+	String Strength;
+	String Schedule;
+	String Quantity;
 
-
-
-@WebServlet("/addMeds")
-public class addMeds extends HttpServlet {
-	/**
-	 * @see HttpSevlet#HttpServlet()
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	public addMeds() {
-		super();
+	@Override
+	public void requestParameters(HttpServletRequest request) {
+		Name = request.getParameter("Name");
+        NDC = request.getParameter("NDC");
+        Strength = request.getParameter("Strength");
+        Schedule = request.getParameter("Schedule");
+        Quantity = request.getParameter("Quantity");
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException {
-		try {
-		MMdbDAO.addMeds(request,response);
+	@Override
+	public void dbConnect() throws SQLException {
+		// TODO Auto-generated method stub
+		super.dbConnect();
+	}
+
+	@Override
+	public void executeQuery(HttpServletResponse response) throws SQLException, IOException {
+		 medication med = new medication(Name, NDC, Strength, Schedule, Quantity);
+	        String insertQuery = "insert into medication (Name, NDC, Strength, Schedule, Quantity) values(?, ?, ?,?,?)";
+	        
+		       PreparedStatement ps = con.prepareStatement(insertQuery); 
+		       ps.setString(1, med.getName()); 
+		       ps.setString(2, med.getNDC()); 
+		       ps.setString(3, med.getStrength()); 
+		       ps.setString(4, med.getSchedule()); 
+		       ps.setString(5, med.getQuantity());
+		       ps.execute();
 		
-		response.sendRedirect("inventory.jsp");
-		}
-		catch(Exception e){
-			e.printStackTrace();
-		}
+		       
+		       response.sendRedirect("inventory.jsp");
 	}
-
+	
 }
 
