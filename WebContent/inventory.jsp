@@ -33,7 +33,7 @@ ResultSet resultSet = null;
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Add Medication</title>
+<title>Medication</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	<style>
 	body {background-color: powderblue;}
@@ -62,7 +62,7 @@ ResultSet resultSet = null;
 </nav>
 
 <center><br>
-<h1>Inventory</h1>
+<h1>Medications in stock</h1>
 <a href="addin.jsp" class="btn btn-primary" role="button">Add to Inventory</a>
  <table class="table table-dark table-hover">
 <thead class="thead-dark">

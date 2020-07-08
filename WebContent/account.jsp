@@ -1,3 +1,4 @@
+  
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -16,11 +17,11 @@
 <style>
 	body {background-color: powderblue;}
 	p    {color: red;}
-	</style>
+</style>
 </head>
 
 <body>
-		<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
   <a class="navbar-brand" href="login.jsp">Logout</a>
   
   <!-- Links -->
@@ -39,12 +40,12 @@
     </li>
   </ul>
 </nav>
-	<br>
+	<br><br>
 	<div align="center">
-		<caption>
-			<h1>Manager Information</h1><br>
-		</caption>
-		<table class="table table-dark table-hover">
+		
+			<h1></h1><u>Manager Information</u></h1><br>
+		<br>
+		<table border=2>
 			<tr>
                 <th>First Name: </th>
                 <td>

@@ -46,7 +46,7 @@
 
 <div class="jumbotron">
   <h1>Welcome to Med Manager</h1>
-  <p>Manage your pharmacy on the go!</p>
+  <p>Manage your pharmacy all in one place!</p>
 </div>
 	
 </body>
