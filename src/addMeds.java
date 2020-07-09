@@ -8,11 +8,11 @@ import models.medication;
 
 
 public class addMeds extends addTemplate {
-	String Name;
-	String NDC;
-	String Strength;
-	String Schedule;
-	String Quantity;
+	private String Name;
+	private String NDC;
+	private String Strength;
+	private String Schedule;
+	private String Quantity;
 
 	@Override
 	public void requestParameters(HttpServletRequest request) {
@@ -21,12 +21,6 @@ public class addMeds extends addTemplate {
         Strength = request.getParameter("Strength");
         Schedule = request.getParameter("Schedule");
         Quantity = request.getParameter("Quantity");
-	}
-
-	@Override
-	public void dbConnect() throws SQLException {
-		// TODO Auto-generated method stub
-		super.dbConnect();
 	}
 
 	@Override
