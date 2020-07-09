@@ -9,10 +9,10 @@ import models.Managers;
 
 
 public class addManager extends addTemplate {
-	String firstName;
-	String lastName;
-	String email;
-	String password;
+	private String firstName;
+	private String lastName;
+	private String email;
+	private String password;
 
 	@Override
 	public void requestParameters(HttpServletRequest request) {
@@ -20,12 +20,6 @@ public class addManager extends addTemplate {
         lastName = request.getParameter("lastName");
         email = request.getParameter("email");
         password = request.getParameter("password");
-	}
-
-	@Override
-	public void dbConnect() throws SQLException {
-		// TODO Auto-generated method stub
-		super.dbConnect();
 	}
 
 	@Override
