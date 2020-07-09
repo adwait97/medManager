@@ -41,7 +41,7 @@
 
 	<div align="center">
 	<h1>
-       Manager on duty: <u><%out.print(session.getAttribute("m_onduty")); %></u>
+       <u><%out.print(session.getAttribute("workerDuty")); %></u>
     </h1><br><br>
     <h2><b>Fill Order</b></h2>
         <form action="addOrder" method="post">

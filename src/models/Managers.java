@@ -1,6 +1,6 @@
 package models;
 
-public class Managers {
+public class Managers implements Workers {
 	
 	public int managerid;
 	public String firstname;
@@ -54,6 +54,12 @@ public class Managers {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	@Override
+	public String getDuty() {
+		// TODO Auto-generated method stub
+		return "Current acting manager: " + firstname;
 	}
 	
 }

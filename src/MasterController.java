@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import models.Managers;
 import models.Medications;
 import models.Orders;
+import models.Workers;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -93,12 +94,12 @@ public class MasterController extends HttpServlet {
     		System.out.println("NumFrmtEx caught");
     	}
     	String pword = request.getParameter("password");
-    	boolean ans = mmdbDAO.validate(managerid, pword);
+    	boolean ans = mmdbDAO.validate(managerid, pword); // TODO-
     	if(ans) {
-    		Managers manager = mmdbDAO.getManager(managerid, pword);
+    		Workers currentWorker = mmdbDAO.getcurrentWorker(managerid, pword);//TODO-use interface Workers c_worker
     		session = request.getSession();
-    		session.setAttribute("currentManagersObject", manager);
-    		session.setAttribute("m_onduty", manager.getFirstname());
+    		session.setAttribute("currentManagersObject", currentWorker);
+    		session.setAttribute("workerDuty", currentWorker.getDuty()); // TODO-change this to c_Worker.getDuty()
     		response.sendRedirect("home.jsp");
     	}
     	else {

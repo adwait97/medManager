@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import models.Managers;
 import models.Medications;
 import models.Orders;
+import models.Workers;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -75,8 +76,10 @@ public class MMdbDAO {
     	return flag;
     }
     
-    public Managers getManager(int managerid, String password) throws SQLException {
-    	Managers result = null;
+    //TODO - re-factor to getWorker() and use WOrkerFactory getWorker
+    public Workers getcurrentWorker(int managerid, String password) throws SQLException {
+    	WorkerFactory wf = new WorkerFactory();
+    	Workers result = null;
     	con_func();
     	String d_query = "select m.firstname, m.lastname, m.password, m.email, m.managerid from "
     			+ "managers m where m.managerid = ? and m.password = ?"; // cross verify w/ id and password
@@ -90,7 +93,8 @@ public class MMdbDAO {
     		String em = rs.getString("email");
     		String pw = rs.getString("password");
     		int mid = rs.getInt("managerid");
-    		result = new Managers(mid, fn, ln, pw, em);
+    		//result = new Managers(mid, fn, ln, pw, em);
+    		result = wf.getWorker(mid, fn, ln, pw, em);
     	}
     	rs.close();
     	ps.close();
