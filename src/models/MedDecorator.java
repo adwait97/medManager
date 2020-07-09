@@ -13,7 +13,7 @@ public class MedDecorator {
 		
 	}
 
-	public double getQuantity() {
+	public int getQuantity() {
 		
 		return tempMed.getQuantity();
 		
