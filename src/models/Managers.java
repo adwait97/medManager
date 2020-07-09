@@ -58,7 +58,6 @@ public class Managers implements Workers {
 
 	@Override
 	public String getDuty() {
-		// TODO Auto-generated method stub
 		return "Current acting manager: " + firstname;
 	}
 	

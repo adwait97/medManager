@@ -94,12 +94,12 @@ public class MasterController extends HttpServlet {
     		System.out.println("NumFrmtEx caught");
     	}
     	String pword = request.getParameter("password");
-    	boolean ans = mmdbDAO.validate(managerid, pword); // TODO-
+    	boolean ans = mmdbDAO.validate(managerid, pword); 
     	if(ans) {
-    		Workers currentWorker = mmdbDAO.getcurrentWorker(managerid, pword);//TODO-use interface Workers c_worker
+    		Workers currentWorker = mmdbDAO.getcurrentWorker(managerid, pword);
     		session = request.getSession();
     		session.setAttribute("currentManagersObject", currentWorker);
-    		session.setAttribute("workerDuty", currentWorker.getDuty()); // TODO-change this to c_Worker.getDuty()
+    		session.setAttribute("workerDuty", currentWorker.getDuty()); 
     		response.sendRedirect("home.jsp");
     	}
     	else {

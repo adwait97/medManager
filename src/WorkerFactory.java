@@ -2,6 +2,7 @@ import models.Managers;
 import models.Owners;
 import models.Workers;
 
+//factory class that uses Workers Interface
 public class WorkerFactory {
 	
 	public Workers getWorker(int mid, String fn, String ln, String pw, String em) {
