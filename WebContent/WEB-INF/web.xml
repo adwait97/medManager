@@ -42,4 +42,8 @@
   <welcome-file-list>
     <welcome-file>login.jsp</welcome-file>
   </welcome-file-list>
+  <servlet-mapping>
+  	<servlet-name>default</servlet-name>
+  	<url-pattern>/Styling/*</url-pattern>
+  </servlet-mapping>
 </web-app>

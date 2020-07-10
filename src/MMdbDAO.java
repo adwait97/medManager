@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.MMdbDAOFacade;
 import models.Managers;
 import models.Medications;
 import models.Orders;
@@ -27,7 +28,7 @@ import java.util.List;
  * Servlet implementation class Connect
  */
 @WebServlet("/MMdbDAO")
-public class MMdbDAO {     
+public class MMdbDAO implements MMdbDAOFacade{     
 	private static final long serialVersionUID = 1L;
 	private Connection con = null;
 	private Statement statement = null;
@@ -36,7 +37,7 @@ public class MMdbDAO {
 	
 	public MMdbDAO() {}
 
-    protected void con_func() throws SQLException {
+    public void con_func() throws SQLException {
         if (con == null || con.isClosed()) {
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
@@ -49,7 +50,7 @@ public class MMdbDAO {
         }
     }
     
-    protected void disconnect() throws SQLException {
+    public void disconnect() throws SQLException {
         if (con != null && !con.isClosed()) {
         	con.close();
         }
@@ -73,6 +74,7 @@ public class MMdbDAO {
 		ps.close();
     	disconnect();
     	return flag;
+    	
     }
     
     public Managers getManager(int managerid, String password) throws SQLException {

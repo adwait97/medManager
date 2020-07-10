@@ -16,6 +16,7 @@
 <meta charset="ISO-8859-1">
 <title>Dash-board</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="Styling/home.css">
 	<style>
 	body {background-color: powderblue;}
 	p    {color: red;}

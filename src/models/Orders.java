@@ -2,7 +2,7 @@ package models;
 
 import java.util.Date;
 
-public class Orders {
+public class Orders{
 	
 	int orderid;
 	String customername;

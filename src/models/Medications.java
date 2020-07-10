@@ -1,6 +1,6 @@
 package models;
 
-public class Medications {
+public class Medications{
 	
 	public String name;
 	public long ndc;
