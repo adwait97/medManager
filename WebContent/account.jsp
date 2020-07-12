@@ -13,33 +13,29 @@
 <meta charset="ISO-8859-1">
 <title>Manager Info</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="Styling/account.css">
 <style>
-	body {background-color: powderblue;}
-	p    {color: red;}
+	
 </style>
 </head>
 
 <body>
-	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  		<ul class="navbar-nav">
-    		<li class="nav-item">
-      			<a class="nav-link" href="showHome">Home</a>
-    		</li>
-    		<li class="nav-item">
-      			<a class="nav-link" href="inventory">Inventory</a>
-    		</li>
-    		<li class="nav-item">
-      			<a class="nav-link" href="showReports">Report</a>
-    		</li>
-  		</ul>
-  		<ul align="right" class="navbar-nav"><a class="navbar-brand" href="logout">Logout</a></ul>
-	</nav>
-	<br><br>
-	<div align="center">
-		<caption>
-			<u>Manager Information</u><br>
-		</caption><br>
-		<table border=2>
+	
+<nav role="navigation" class="primary-navigation">
+ <ul>
+    <li><a href="inventory">Inventory</a></li>
+    <li><a href="showReports">Reports</a></li>
+    <li><a href="showAccount">Account</a></li>
+    <li><a href="logout">Logout</a></li>
+</ul>
+</nav>
+
+<br>
+	<div class ="container" align="center">
+		
+		<h2>Manager Information</h2><br>
+		<br>
+		<table >
 			<tr>
                 <th>First Name: </th>
                 <td>
@@ -65,7 +61,8 @@
                 </td>
             </tr>
 		</table>
-	</div>
+		</div>
+
 	
 	
 </body>

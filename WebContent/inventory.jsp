@@ -13,27 +13,25 @@
 <meta charset="ISO-8859-1">
 <title>Inventory report</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="Styling/home.css">
 	<style>
-	body {background-color: powderblue;}
-	p    {color: red;}
+	
 	</style>
 </head>
 <body>
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link" href="showHome">Home</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-link" href="showAccount">Account</a>
-    </li>
-  </ul>
-  <ul align="right" class="navbar-nav"><a class="navbar-brand" href="logout">Logout</a></ul>
-</nav><hr><br>
+<nav role="navigation" class="primary-navigation">
+ <ul>
+    <li><a href="inventory">Inventory</a></li>
+    <li><a href="showReports">Reports</a></li>
+    <li><a href="showAccount">Account</a></li>
+    <li><a href="logout">Logout</a></li>
+</ul>
+</nav>
 
-<div align="center">
-	<h1>Stocked Inventory</h1><br>
+<br>
+
+<div class="container" align="center">
+	<h2>Stocked Inventory</h2><br>
 	<c:forEach var="m" items="${populatedInventory}" >
 		<table border=2>
 			<tr>
