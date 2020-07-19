@@ -21,9 +21,9 @@
         <form action="validate" method="post">
         <table border="1">
             <tr>
-                <th>ManagerID: </th>
+                <th>e-mail Address: </th>
                 <td>
-                    <input type="text" name="mid" size="45"/>
+                    <input type="text" name="email" size="45"/>
                 </td>
             </tr>
             <tr>

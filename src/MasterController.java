@@ -62,6 +62,9 @@ public class MasterController extends HttpServlet {
             case "/addOrder":
             	addOrder(request, response);
             	break;
+            case "/searchReports":
+            	searchReports(request, response);
+            	break;
             case "/showHome":
             	showHome(request, response);
             	break;
@@ -85,21 +88,21 @@ public class MasterController extends HttpServlet {
     private void validateManager(HttpServletRequest request, HttpServletResponse response)
     		throws SQLException, IOException, ServletException, NumberFormatException {
     	PrintWriter out = response.getWriter();
-    	int managerid = -99;
+    	String em = "";
     	try {
-    		managerid = Integer.parseInt(request.getParameter("mid"));
+    		em = request.getParameter("email");
     	}
     	catch (NumberFormatException e) {
     		System.out.println("NumFrmtEx caught");
     	}
-    	String pword = request.getParameter("password");
-    	boolean ans = mmdbDAO.validate(managerid, pword);
+    	String pw = request.getParameter("password");
+    	boolean ans = mmdbDAO.validate(em, pw);
     	if(ans) {
-    		Managers manager = mmdbDAO.getManager(managerid, pword);
-    		session = request.getSession();
-    		session.setAttribute("currentManagersObject", manager);
-    		session.setAttribute("m_onduty", manager.getFirstname());
-    		response.sendRedirect("home.jsp");
+			 Managers manager = mmdbDAO.getManager(em, pw); 
+			 session = request.getSession(); 
+			 session.setAttribute("currentManagersObject", manager);
+			 session.setAttribute("m_onduty", manager.getFirstname());
+			 response.sendRedirect("home.jsp");
     	}
     	else {
     		out.print("<script>alert('--Log-in failed. Try again.--'); window.location='login.jsp' </script>");
@@ -109,6 +112,43 @@ public class MasterController extends HttpServlet {
     
     private void showHome(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException{
     	response.sendRedirect("home.jsp");
+    }
+    
+    //method to search reports according to user input
+    private void searchReports(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
+    	String cname = request.getParameter("customername");
+    	String schedule = request.getParameter("schedule");
+    	long ndc = Long.parseLong((String) request.getParameter("ndc"));
+    	if(cname.contentEquals("") && schedule.contentEquals("")) { //search by drug
+    		if(ndc != -99) {
+    			System.out.println("search based on drugcode ->"+ndc);
+    			List<Orders> order_list = mmdbDAO.searchbyCode(ndc);
+    			request.setAttribute("orderResults", order_list);
+    		}
+    	}
+    	else if(ndc == -99 && schedule.contentEquals("")) { //search by customer name
+    		if(!(cname.contentEquals(""))) {
+    			System.out.println("search based on name ->"+cname);
+    			List<Orders> order_list = mmdbDAO.searchbyName(cname);
+    			request.setAttribute("orderResults", order_list);
+    		}
+    	}
+    	else if(cname.contentEquals("") && ndc == -99) { // search by schedule
+    		if(!(schedule.contentEquals(""))) {
+    			System.out.println("search based on schedule ->"+schedule);
+    			List<Orders> order_list = mmdbDAO.searchbySchedule(schedule);
+    			request.setAttribute("orderResults", order_list);
+    		}
+    	}
+    	else {
+    		System.out.println("Trying to search by more than one parameter");
+    		PrintWriter out = response.getWriter();
+    		out.print("<script>alert('Search parameter violated'); window.location='orderReports.jsp' </script>");
+    		out.flush();out.close();
+    	}
+    	request.setAttribute("testVar", "some search has been made");
+    	RequestDispatcher rd = getServletContext().getRequestDispatcher("/orderReports.jsp");
+    	rd.forward(request,  response);
     }
     
     //method to add order to respective table in db
@@ -136,13 +176,11 @@ public class MasterController extends HttpServlet {
     
     //method to navigate to and display current users account information
     private void accountInfo(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException{
-    	Managers m = (Managers) session.getAttribute("currentManagersObject");
-    	
+    	Managers m = (Managers) session.getAttribute("currentManagersObject");    	
     	request.setAttribute("currentFirstName", m.getFirstname());
     	request.setAttribute("currentLastName", m.getLastname());
     	request.setAttribute("currentEmail", m.getEmail());
-    	request.setAttribute("currentManagersID", m.getManagerid());
-    	
+    	request.setAttribute("currentManagersID", m.getManagerid());	
     	RequestDispatcher rd = getServletContext().getRequestDispatcher("/account.jsp"); // getServletContext required
     	rd.forward(request,  response);
     }
@@ -150,7 +188,6 @@ public class MasterController extends HttpServlet {
     private void showReports(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
     	List<Orders> order_list = mmdbDAO.populateOrders();
     	request.setAttribute("allOrders", order_list);
-    	//System.out.println("------inShowReports: "+order_list.get(0).getCustomername());
     	RequestDispatcher rd = getServletContext().getRequestDispatcher("/orderReports.jsp");
     	rd.forward(request,  response);
     }
@@ -158,7 +195,6 @@ public class MasterController extends HttpServlet {
     private void showInventory(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
     	List<Medications> inventory = mmdbDAO.populateInventory();
     	request.setAttribute("populatedInventory", inventory);
-    	System.out.println("---------Here in showInv---------");
     	RequestDispatcher rd = getServletContext().getRequestDispatcher("/inventory.jsp"); // getServletContext required
     	rd.forward(request,  response);
     }
