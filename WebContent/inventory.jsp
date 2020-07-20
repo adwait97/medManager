@@ -34,6 +34,10 @@
 
 <div align="center">
 	<h1>Stocked Inventory</h1><br>
+	<a href="addin.jsp" class="btn btn-info" role="button">Add New Medication</a>
+	<a href="updatein.jsp" class="btn btn-info" role="button">Update stock</a>
+	<a href="history.jsp" class="btn btn-info" role="button">History</a>
+	<br> <br>
 	<c:forEach var="m" items="${populatedInventory}" >
 		<table border=2>
 			<tr>

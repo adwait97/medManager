@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import models.Managers;
 import models.Medications;
@@ -29,14 +30,14 @@ import java.util.List;
 @WebServlet("/MMdbDAO")
 public class MMdbDAO {     
 	private static final long serialVersionUID = 1L;
-	private Connection con = null;
+	private static Connection con = null;
 	private Statement statement = null;
 	private PreparedStatement ps = null;
 	private ResultSet rs = null;
 	
 	public MMdbDAO() {}
 
-    protected void con_func() throws SQLException {
+    protected static void con_func() throws SQLException {
         if (con == null || con.isClosed()) {
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
@@ -241,5 +242,89 @@ public class MMdbDAO {
     	statement.close();
     	disconnect();
     	return allOrders;
+    }
+    
+  //method for adding manager to database of registered managers
+    protected static void addManager(HttpServletRequest request, HttpServletResponse response) 
+            throws SQLException, IOException {
+    	int managerID = Integer.parseInt(request.getParameter("managerID"));
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        
+        con_func();
+        Statement stmt = con.createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT * FROM managers where managerid = '"+managerID+"' or email = '"+email+"' ");
+       
+		if (rs.next()) {
+	       response.sendRedirect("registration.jsp");
+		}
+		else {
+			 Managers manager = new Managers(managerID, firstName, lastName, email, password);
+		        String insertQuery = "INSERT INTO managers (managerid, firstname, lastname, email, password) VALUES (?, ?, ?, ?, ?);";
+			       PreparedStatement ps = con.prepareStatement(insertQuery); 
+			       ps.setInt(1, manager.getManagerid());
+			       ps.setString(2, manager.getFirstname()); 
+			       ps.setString(3, manager.getLastname()); 
+			       ps.setString(4, manager.getEmail()); 
+			       ps.setString(5, manager.getPassword()); 
+			       
+			       ps.execute();
+			       
+			       response.sendRedirect("login.jsp");
+		}
+			
+    }
+    
+    protected static void addMeds(HttpServletRequest request, HttpServletResponse response) 
+            throws SQLException, IOException {
+        String Name = request.getParameter("name");
+        long NDC = Long.parseLong(request.getParameter("ndc"));
+        int Strength = Integer.parseInt(request.getParameter("strength"));
+        int Quantity = Integer.parseInt(request.getParameter("quantity"));
+        String Schedule = request.getParameter("schedule");
+        
+        HttpSession session = request.getSession(false);
+        
+        con_func();
+        Medications med = new Medications(Name, NDC, Strength, Quantity, Schedule);
+        String insertQuery = "insert into medications (Name, ndc, Strength, quantity, schedule) values(?, ?, ?, ?, ?)";
+        String updateHistory = " insert into updatehistory(date, description) values(CURRENT_TIMESTAMP(), \"Added new medication "+Name+" to inventory.\") ";
+        
+	       PreparedStatement ps = con.prepareStatement(insertQuery); 
+	       ps.setString(1, med.getName()); 
+	       ps.setLong(2, med.getNdc()); 
+	       ps.setInt(3, med.getStrength()); 
+	       ps.setInt(4, med.getQuantity());
+	       ps.setString(5, med.getSchedule()); 
+	       ps.execute();
+	       
+	       ps = con.prepareStatement(updateHistory);
+	       ps.execute();
+	
+	       
+	       response.sendRedirect("inventory");
+    }
+    
+    protected static void updateMeds(HttpServletRequest request, HttpServletResponse response) 
+            throws SQLException, IOException {
+    	long NDC = Long.parseLong(request.getParameter("ndc"));
+        int newQuantity = Integer.parseInt(request.getParameter("newQuantity"));
+        
+        HttpSession session = request.getSession(false);
+        
+        con_func();
+        
+        String updateQuery = " update medications set quantity = "+newQuantity+" where ndc = "+NDC+" ";
+        String updateHistory = " insert into updatehistory(date, description) values(CURRENT_TIMESTAMP(), \"Updated quantity of medication with NDC '"+NDC+"' to "+newQuantity+".\") ";
+        
+        PreparedStatement ps = con.prepareStatement(updateQuery);
+	    ps.execute();
+	    ps = con.prepareStatement(updateHistory);
+	    ps.execute();
+	
+	       
+	       response.sendRedirect("inventory");
     }
 }

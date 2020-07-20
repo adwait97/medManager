@@ -71,8 +71,14 @@ public class MasterController extends HttpServlet {
             case "/showReports":
             	showReports(request, response);
             	break;
-            case "/new":
-            	addManager(request, response);
+            case "/addManager":
+            	MMdbDAO.addManager(request, response);
+            	break;
+            case "/addMeds":
+            	MMdbDAO.addMeds(request, response);
+            	break;
+            case "/updateMeds":
+            	MMdbDAO.updateMeds(request, response);
             	break;
             case "/inventory":
             	showInventory(request, response);
@@ -198,10 +204,4 @@ public class MasterController extends HttpServlet {
     	RequestDispatcher rd = getServletContext().getRequestDispatcher("/inventory.jsp"); // getServletContext required
     	rd.forward(request,  response);
     }
-    
-    //method for adding manager to database of registered managers
-    private void addManager(HttpServletRequest request, HttpServletResponse response)throws SQLException, IOException{
-    	//response.sendRedirect("newManagerForm.jsp");
-    }
-
 }

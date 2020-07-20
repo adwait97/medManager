@@ -15,7 +15,7 @@ public class Managers {
 		this.firstname = firstname;
 	}
 	
-	public Managers(int managerid, String firstname, String lastname, String password, String email) {
+	public Managers(int managerid, String firstname, String lastname, String email, String password) {
 		super();
 		this.managerid = managerid;
 		this.firstname = firstname;
