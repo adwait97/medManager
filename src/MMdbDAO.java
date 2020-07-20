@@ -36,7 +36,8 @@ public class MMdbDAO {
 	
 	public MMdbDAO() {}
 
-    protected void con_func() throws SQLException {
+    protected Boolean con_func() throws SQLException {
+    	boolean flag = true;
         if (con == null || con.isClosed()) {
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
@@ -46,7 +47,9 @@ public class MMdbDAO {
             con = (Connection) DriverManager
   			      .getConnection("jdbc:mysql://127.0.0.1:3306/mmdb?"
   	  			          + "useSSL=false&user=admin&password=admin1234");
+            flag = false;
         }
+        return flag;
     }
     
     protected void disconnect() throws SQLException {
@@ -98,7 +101,7 @@ public class MMdbDAO {
     	return result;
     }
     
-  //method to search reports by NDC
+  //method to search reports by schedule
     public List<Orders> searchbySchedule(String s) throws SQLException{
     	con_func();
     	List<Orders> orders_schedule = new ArrayList<Orders>();
@@ -118,7 +121,11 @@ public class MMdbDAO {
     		Orders o = new Orders(orderid, cn, ndc, email, quantity, d, strength);
     		orders_schedule.add(o);
     	}
-    	return orders_schedule;
+    	if(orders_schedule.isEmpty()) {
+    		return null;
+    	}
+    	else
+    		return orders_schedule;
     }
   
     //method to search reports by NDC
@@ -164,7 +171,11 @@ public class MMdbDAO {
     		Orders o = new Orders(orderid, cn, ndc, email, quantity, d, strength);
     		orders_cname.add(o);
     	}
-    	return orders_cname;
+    	if(orders_cname.isEmpty()) {
+    		return null;
+    	}
+    	else
+    		return orders_cname;
     }
     
     //method to update medication inventory 
