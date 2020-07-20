@@ -13,6 +13,7 @@
 <meta charset="ISO-8859-1">
 <title>Manager Info</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="style.css">
 <style>
 	body {background-color: powderblue;}
 	p    {color: red;}
@@ -21,7 +22,7 @@
 
 <body>
 	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  		<ul class="navbar-nav">
+  		<ul class="navbar-nav mr-auto">
     		<li class="nav-item">
       			<a class="nav-link" href="showHome">Home</a>
     		</li>

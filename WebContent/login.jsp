@@ -21,7 +21,7 @@
         <form action="validate" method="post">
         <table border="1">
             <tr>
-                <th>e-mail Address: </th>
+                <th>E-mail Address: </th>
                 <td>
                     <input type="text" name="email" size="45"/>
                 </td>
