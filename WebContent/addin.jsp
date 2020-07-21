@@ -27,7 +27,7 @@
       <a class="nav-link" href="home.jsp">Home</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="inventory.jsp">Inventory</a>
+      <a class="nav-link" href="inventory">Inventory</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="report.jsp">Report</a>
