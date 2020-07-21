@@ -1,45 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-    <title>User Login</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <style>
-		body {background-color: powderblue;}
-		p    {color: red;}
-		h1	 {color: grey}
-		h2	 {color:grey}
-	</style>
+<title>User Login</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="Styling/style.css">
+
 </head>
 <body>
-    <div class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <h1>Med-Manager Login</h1><hr>
-    </div><br><br><br>
-    <div align="center">
-    	<h2><u>Enter Credentials</u></h2>
-        <form action="validate" method="post">
-        <table border="1">
-            <tr>
-                <th>E-mail Address: </th>
-                <td>
-                    <input type="text" name="email" size="45"/>
-                </td>
-            </tr>
-            <tr>
-                <th>Password: </th>
-                <td>
-                    <input type="password" name="password" size="45"/>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" align="center">
-                    <input type="submit" value="Sign-in" />
-                </td>
-            </tr>
-        </table><br>
-        <p>New manager? Set up your account <a href="registration.jsp">here</a> today!</p>
-        </form>
-    </div>   
+	<div class="container">
+		<div align="center">
+			<h2>Med Manager Login</h2>
+			<form action="validate" method="post">
+
+
+				<input type="text" placeholder="Enter Email" name="mid" size="30" /><br>
+				<br> <input type="password" placeholder="Enter Password"
+					name="password" size="30" /><br>
+				<br> <button type="submit" class="btn btn-primary mb-2">Sign-in</button> <br>
+				<br>
+
+
+				<p>
+					New manager? Set up your account <a href="registration.jsp">here</a>
+					today!
+				</p>
+			</form>
+		</div>
+	</div>
+
 </body>
 </html>

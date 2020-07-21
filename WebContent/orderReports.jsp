@@ -13,29 +13,24 @@
 <meta charset="ISO-8859-1">
 <title>Reports</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<style>
-	body {background-color: powderblue;}
-	p    {color: red;}
-</style>
+<link rel="stylesheet" href="Styling/style.css">
+
 </head>
 <body>
+<nav role="navigation" class="primary-navigation">
+ <ul>
+    <li><a href="inventory">Inventory</a></li>
+    <li><a href="showReports">Reports</a></li>
+    <li><a href="showAccount">Account</a></li>
+    <li><a href="logout">Logout</a></li>
+</ul>
+</nav>
 
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <ul class="navbar-nav mr-auto">
-    <li class="nav-item">
-      <a class="nav-link" href="showHome">Home</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="inventory">Inventory</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="showAccount">Account</a>
-    </li>
-  </ul>
-  <ul align="right" class="navbar-nav"><a class="navbar-brand" href="logout">Logout</a></ul>
-</nav><hr><br>
-
+<div class ="container">
 <div align="center">
+		<h3><u>-Reports<c:if test="${allOrders==null}"> will appear here</c:if>-</u></h3><br>
+		<c:forEach var="o" items="${allOrders}" >
+
 		<h3><u>-Reports-</u></h3><br>
 		<table border="1">
 		<form action="searchReports" method="post">
@@ -76,7 +71,7 @@
            
            <select name="schedule">
 					<option value="" selected>Search by available schedule types. . .</option>
-                    <%
+                 <%
                     Connection con2 = null;
                     if (con2 == null || con2.isClosed()) {
                         try {
@@ -148,11 +143,12 @@
             	</tr>
 			</table><br>
 			</c:forEach>
-		
+	
 		</c:if>
-		
+		</c:forEach>
+		</div>
 	</div>
 	
-	
+	</div>
 </body>
 </html>

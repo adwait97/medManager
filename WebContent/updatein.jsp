@@ -25,6 +25,7 @@ ResultSet resultSet = null;
 	<title>Item Table</title>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="Styling/style.css">
 
 	<!-- jQuery library -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -35,31 +36,19 @@ ResultSet resultSet = null;
 <!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	
-	<style>
-body {background-color: powderblue;}
-h1   {color: blue;}
-p    {color: red;}
-</style>
+
 	
 </head>
-
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link" href="inventory">Inventory</a>
-    </li>
-    <li class="nav-item">
-      	<a class="nav-link" href="showReports">Reports</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="showAccount">Account</a>
-    </li>
-  </ul>
-  <ul align="right" class="navbar-nav"><a class="navbar-brand" href="logout">Logout</a></ul>
-</nav><br><br>
-
-
-
+<nav role="navigation" class="primary-navigation">
+ <ul>
+    <li><a href="inventory">Inventory</a></li>
+    <li><a href="showReports">Reports</a></li>
+    <li><a href="showAccount">Account</a></li>
+    <li><a href="logout">Logout</a></li>
+</ul>
+</nav>
+<div class="container">
+<div align="center">
 <%
 try{ 
 connection = DriverManager.getConnection(connectionUrl+dbName, userId, password);
@@ -69,7 +58,7 @@ String sql ="select * from medications";
 resultSet = statement.executeQuery(sql);
 
 %>
-<center>
+
 <h1>Add to Inventory</h1>
  <FORM action="updateMeds" method="post">
  <div class="form-group">
@@ -102,7 +91,6 @@ Long fname = resultSet.getLong("ndc");
    </TABLE>
    </div>
 </FORM>
-</center>
 
 
 
@@ -114,5 +102,6 @@ e.printStackTrace();
 }
 %>
 </table>
-
+</div>
+</div>
 </html>
