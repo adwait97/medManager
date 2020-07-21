@@ -13,31 +13,39 @@
 <meta charset="ISO-8859-1">
 <title>Inventory report</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="Styling/style.css">
 	<style>
-	
+	body {background-color: powderblue;}
+	p    {color: red;}
 	</style>
 </head>
 <body>
-<nav role="navigation" class="primary-navigation">
- <ul>
-    <li><a href="inventory">Inventory</a></li>
-    <li><a href="showReports">Reports</a></li>
-    <li><a href="showAccount">Account</a></li>
-    <li><a href="logout">Logout</a></li>
-</ul>
-</nav>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                  <a class="nav-link" href="home.jsp">Home</a>
+            </li>
+            <li class="nav-item">
+                  <a class="nav-link" href="inventory">Inventory</a>
+            </li>
+            <li class="nav-item">
+                  <a class="nav-link" href="showReports">Report</a>
+            </li>
+            <li class="nav-item">
+                  <a class="nav-link" href="showAccount">Account</a>
+            </li>
+          </ul>
+          <ul align="right" class="navbar-nav"><a class="navbar-brand" href="logout">Logout</a></ul>
+    </nav>
+    <br><br>
 
-
-<div class="containerInventory">
 <div align="center">
-	<h2>Stocked Inventory</h2><br><br>
-	<a href="addin.jsp" class="btn btn-primary mb-2" role="button">Add New Medication</a>
-	<a href="updatein.jsp" class="btn btn-primary mb-2" role="button">Update stock</a>
-	<a href="history.jsp" class="btn btn-primary mb-2" role="button">History</a>
-
+	<h1>Stocked Inventory</h1><br>
+	<a href="addin.jsp" class="btn btn-info" role="button">Add New Medication</a>
+	<a href="updatein.jsp" class="btn btn-info" role="button">Update stock</a>
+	<a href="history.jsp" class="btn btn-info" role="button">History</a>
+	<br> <br>
 	<c:forEach var="m" items="${populatedInventory}" >
-		<table>
+		<table border=2 class="table table-dark">
 			<tr>
             	<th>Drug Name: </th>
                 	<td>
@@ -68,9 +76,9 @@
                     	${m.quantity}
                 	</td>
             </tr>
-		</table>
+		</table><br>
 	</c:forEach>
 </div>
-</div>
+
 </body>
 </html>

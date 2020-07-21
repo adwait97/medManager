@@ -13,32 +13,63 @@
 <meta charset="ISO-8859-1">
 <title>Manager Info</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="Styling/style.css">
-<link rel="stylesheet" href="style.css">
+<style>
+	body {background-color: powderblue;}
+	p    {color: red;}
+</style>
 </head>
 
 <body>
-<nav role="navigation" class="primary-navigation">
- <ul>
-    <li><a href="inventory">Inventory</a></li>
-    <li><a href="showReports">Reports</a></li>
-    <li><a href="showAccount">Account</a></li>
-    <li><a href="logout">Logout</a></li>
-</ul>
-</nav>
-
-<br>
-	<div class ="container">
-		<div align="center">
-		<h1>Manager Information</h1><br><br>
-		<div class="accountInfo">
-			 <input class ="form-control" type="text" placeholder ="First Name:  <c:out value="${currentFirstName}"/>" readonly ><br>
-             <input class ="form-control" type="text" placeholder ="Last Name:  <c:out value="${currentLastName}"/>" readonly ><br> 
-             <input class ="form-control" type="text" placeholder ="Manager ID:  <c:out value="${currentManagersID}"/>" readonly ><br> 
-             <input class ="form-control" type="text" placeholder ="Email:  <c:out value="${currentEmail}"/>" readonly ><br> 
-             </div>
-		</div>
+	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                  <a class="nav-link" href="home.jsp">Home</a>
+            </li>
+            <li class="nav-item">
+                  <a class="nav-link" href="inventory">Inventory</a>
+            </li>
+            <li class="nav-item">
+                  <a class="nav-link" href="showReports">Report</a>
+            </li>
+            <li class="nav-item">
+                  <a class="nav-link" href="showAccount">Account</a>
+            </li>
+          </ul>
+          <ul align="right" class="navbar-nav"><a class="navbar-brand" href="logout">Logout</a></ul>
+    </nav>
+    <br><br>
+	<div align="center">
+		<caption>
+			<u>Manager Information</u><br>
+		</caption><br>
+		<table border=2 class="table">
+			<tr>
+                <th>First Name: </th>
+                <td>
+                    <c:out value="${currentFirstName}"/>
+                </td>
+            </tr>
+            <tr>
+                <th>Last Name: </th>
+                <td>
+                    <c:out value="${currentLastName}"/>
+                </td>
+            </tr>
+            <tr>
+                <th>Manager's ID: </th>
+                <td>
+                    <c:out value="${currentManagersID}"/>
+                </td>
+            </tr>
+            <tr>
+                <th>Email: </th>
+                <td>
+                    <c:out value="${currentEmail}"/>
+                </td>
+            </tr>
+		</table>
 	</div>
+	
 	
 </body>
 	

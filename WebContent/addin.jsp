@@ -12,36 +12,65 @@
 <meta charset="ISO-8859-1">
 <title>Add Medication</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-	<link rel="stylesheet" href ="Styling/style.css">
-	
+	<style>
+	body {background-color: powderblue;}
+	p    {color: red;}
+	</style>
 </head>
 <body>
-<nav role="navigation" class="primary-navigation">
- <ul>
-    <li><a href="inventory">Inventory</a></li>
-    <li><a href="showReports">Reports</a></li>
-    <li><a href="showAccount">Account</a></li>
-    <li><a href="logout">Logout</a></li>
-</ul>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <a class="navbar-brand" href="login.jsp">Logout</a>
+  
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="home.jsp">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="inventory.jsp">Inventory</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="report.jsp">Report</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="showAccount">Account</a>
+    </li>
+  </ul>
 </nav>
-<div class="containerAdd">
-<div align="center">
 
-<h2>Add to Inventory</h2><br>
+<center>
+<h1>Add to Inventory</h1>
  <FORM action="addMeds" method="post">
  <div class="form-group">
-    <input type="text" class="form-control mb-2 mr-sm-2" id="name" placeholder="Enter Name of Medication" name="name" size="30"><br>
-  <input type="text" class="form-control mb-2 mr-sm-2" id="ndc" placeholder="Enter NDC" name="ndc" size="30"><br>
-  <input type="text" class="form-control mb-2 mr-sm-2" id="strength" placeholder="Enter Strength" name="strength" size="30"><br>
-<input type="text" class="form-control mb-2 mr-sm-2" id="quantity" placeholder="Enter Quantity" name="quantity" size="30"><br>
-<input type="text" class="form-control mb-2 mr-sm-2" id="schedule" placeholder="Enter Schedule" name="Schedule" size="30"><br>
-   
-		  <button type="submit" class="btn btn-primary mb-2">Submit</button>
-
+    <TABLE>
+         <TR>
+	      <TH width="50%">Name</TH>
+		  <TD width="50%"><INPUT TYPE="text" Name="name"></TD>
+	  </tr>
+      <tr>
+	     <TH width="50%">NDC</TH>
+		 <TD width="50%"><INPUT TYPE="text" NAME="ndc"></TD>
+	  </tr>   
+	  <tr>
+	     <TH width="50%">Strength</TH>
+		 <TD width="50%"><INPUT TYPE="text" NAME="strength"></TD>
+	  </tr>  
+	  <tr>
+	     <TH width="50%">Quantity</TH>
+		 <TD width="50%"><INPUT TYPE="text" NAME="quantity"></TD>
+	  </tr>
+	  <tr>
+	     <TH width="50%">Schedule</TH>
+		 <TD width="50%"><INPUT TYPE="text" NAME="schedule"></TD>
+	  </tr>
+	  	  <TR>
+	      <TH></TH>
+		  <TD width="50%"><INPUT TYPE="submit" VALUE="submit"></TD>
+	  </tr>
+	  
+   </TABLE>
    </div>
-   
 </FORM>
-</div>
-</div>
+</center>
 </body>
 </html>

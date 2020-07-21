@@ -91,7 +91,7 @@ public class MMdbDAO {
     		String em = rs.getString("email");
     		String pw = rs.getString("password");
     		int mid = rs.getInt("managerid");
-    		result = new Managers(mid, fn, ln, pw, em);
+    		result = new Managers(mid, fn, ln, em, pw);
     	}
     	rs.close();
     	ps.close();

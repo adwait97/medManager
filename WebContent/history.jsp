@@ -25,7 +25,6 @@ ResultSet resultSet = null;
 	<title>Item Table</title>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-	<link rel="stylesheet" href="Styling/style.css">
 
 	<!-- jQuery library -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -36,40 +35,41 @@ ResultSet resultSet = null;
 <!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	
-
+	<style>
+body {background-color: powderblue;}
+h1   {color: blue;}
+p    {color: red;}
+</style>
 	
 </head>
 
-<nav role="navigation" class="primary-navigation">
- <ul>
-    <li><a href="inventory">Inventory</a></li>
-    <li><a href="showReports">Reports</a></li>
-    <li><a href="showAccount">Account</a></li>
-    <li><a href="logout">Logout</a></li>
-</ul>
-</nav>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="inventory">Inventory</a>
+    </li>
+    <li class="nav-item">
+      	<a class="nav-link" href="showReports">Reports</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="showAccount">Account</a>
+    </li>
+  </ul>
+  <ul align="right" class="navbar-nav"><a class="navbar-brand" href="logout">Logout</a></ul>
+</nav><br>
+<br>
  
- <div class="containerHistory">
- <div align="center">
+ <center>
+<h1>History</h1><br>
 
-<h2>Disbursement History</h2><br>
-<table>
+<table class="table table-dark table-hover">
 <tr>
-<th>
-Date
-</th>
-<th>
-Description
-</th>
-<tr>
-<td>
-test
-</td>
-<td>
-test
-</td>
+
 </tr>
-
+<tr>
+<td><b>Date</b></td>
+<td><b>Description</b></td>
+</tr>
 <%
 try{ 
 connection = DriverManager.getConnection(connectionUrl+dbName, userId, password);
@@ -94,7 +94,5 @@ e.printStackTrace();
 }
 %>
 </table>
-
-</div>
-</div>
+</center>
 </html>
