@@ -38,7 +38,7 @@
                 </td>
             </tr>
         </table><br>
-        <p>New manager? Set up your account <a href="new">here</a> today!</p>
+        <p>New manager? Set up your account <a href="registration.jsp">here</a> today!</p>
         </form>
     </div>   
 </body>

@@ -22,6 +22,11 @@ public class Medications {
 		this.quantity = quantity;
 		this.schedule = schedule;
 	}
+	
+	public Medications(String name, int newQuantity) {
+		this.name = name;
+		this.quantity = newQuantity;
+	}
 
 	public String getName() {
 		return name;
