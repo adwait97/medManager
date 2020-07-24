@@ -91,7 +91,7 @@ public class MMdbDAO {
     		String em = rs.getString("email");
     		String pw = rs.getString("password");
     		int mid = rs.getInt("managerid");
-    		result = new Managers(mid, fn, ln, pw, em);
+    		result = new Managers(mid, fn, ln, em, pw);
     	}
     	rs.close();
     	ps.close();
@@ -191,7 +191,12 @@ public class MMdbDAO {
     	ps.setString(3, email);
     	ps.setInt(4, quantity);
     	boolean tupleInserted = ps.executeUpdate() > 0;
+    	
+    	String updateHistory = " insert into updatehistory(date, description) values(CURRENT_TIMESTAMP(), \"Added new order for "+cname+" for medication NDC '"+ndc+"' of "+quantity+" quantity.\") ";
+    	ps = con.prepareStatement(updateHistory);
+	    ps.execute();
     	ps.close();
+    	
     	disconnect();
     	System.out.println("\n--New Order Added--");
     	return tupleInserted;
@@ -273,12 +278,13 @@ public class MMdbDAO {
 			       ps.execute();
 			       
 			       response.sendRedirect("login.jsp");
-		}
-			
+		}	
     }
     
     protected static void addMeds(HttpServletRequest request, HttpServletResponse response) 
             throws SQLException, IOException {
+    	PrintWriter out = response.getWriter();
+    	
         String Name = request.getParameter("name");
         long NDC = Long.parseLong(request.getParameter("ndc"));
         int Strength = Integer.parseInt(request.getParameter("strength"));
@@ -288,6 +294,14 @@ public class MMdbDAO {
         HttpSession session = request.getSession(false);
         
         con_func();
+        Statement stmt = con.createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT * FROM medications where ndc = '"+NDC+"' ");
+       
+		if (rs.next()) {
+			out.print("<script>alert('--medication with this NDC already exists in the inventory.--'); window.location='addin.jsp' </script>");
+	       response.sendRedirect("inventory");
+		}
+		else {
         Medications med = new Medications(Name, NDC, Strength, Quantity, Schedule);
         String insertQuery = "insert into medications (Name, ndc, Strength, quantity, schedule) values(?, ?, ?, ?, ?)";
         String updateHistory = " insert into updatehistory(date, description) values(CURRENT_TIMESTAMP(), \"Added new medication "+Name+" to inventory.\") ";
@@ -305,6 +319,7 @@ public class MMdbDAO {
 	
 	       
 	       response.sendRedirect("inventory");
+		}
     }
     
     protected static void updateMeds(HttpServletRequest request, HttpServletResponse response) 

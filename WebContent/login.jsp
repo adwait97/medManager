@@ -13,33 +13,26 @@
 	</style>
 </head>
 <body>
-    <div class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <h1>Med-Manager Login</h1><hr>
-    </div><br><br><br>
-    <div align="center">
-    	<h2><u>Enter Credentials</u></h2>
-        <form action="validate" method="post">
-        <table border="1">
-            <tr>
-                <th>e-mail Address: </th>
-                <td>
-                    <input type="text" name="email" size="45"/>
-                </td>
-            </tr>
-            <tr>
-                <th>Password: </th>
-                <td>
-                    <input type="password" name="password" size="45"/>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" align="center">
-                    <input type="submit" value="Sign-in" />
-                </td>
-            </tr>
-        </table><br>
-        <p>New manager? Set up your account <a href="registration.jsp">here</a> today!</p>
-        </form>
-    </div>   
+    <div class="container">
+<div>
+  <h1>Manager Login</h1><br>
+  <form action="validate" method="post">
+  <div class="form-group">
+    <label for="email">Email address:</label>
+    <input type="email" class="form-control" placeholder="Enter email" id="email" name="email">
+  </div>
+  <div class="form-group">
+    <label for="pwd">Password:</label>
+    <input type="password" class="form-control" placeholder="Enter password" id="password" name="password">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+  <p>New manager? Set up your account <a href="registration.jsp">here</a> today!</p>
+</form>
+    
+
+</div>
+
+ 
+
 </body>
 </html>

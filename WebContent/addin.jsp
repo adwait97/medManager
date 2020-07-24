@@ -19,24 +19,23 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <a class="navbar-brand" href="login.jsp">Logout</a>
-  
-  <!-- Links -->
-  <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link" href="home.jsp">Home</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="inventory.jsp">Inventory</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="report.jsp">Report</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="showAccount">Account</a>
-    </li>
-  </ul>
-</nav>
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                  <a class="nav-link" href="home.jsp">Home</a>
+            </li>
+            <li class="nav-item">
+                  <a class="nav-link" href="inventory">Inventory</a>
+            </li>
+            <li class="nav-item">
+                  <a class="nav-link" href="showReports">Report</a>
+            </li>
+            <li class="nav-item">
+                  <a class="nav-link" href="showAccount">Account</a>
+            </li>
+          </ul>
+          <ul align="right" class="navbar-nav"><a class="navbar-brand" href="logout">Logout</a></ul>
+    </nav>
+    <br><br>
 
 <center>
 <h1>Add to Inventory</h1>

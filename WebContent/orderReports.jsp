@@ -21,19 +21,23 @@
 <body>
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link" href="showHome">Home</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="inventory">Inventory</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="showAccount">Account</a>
-    </li>
-  </ul>
-  <ul align="right" class="navbar-nav"><a class="navbar-brand" href="logout">Logout</a></ul>
-</nav><hr><br>
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                  <a class="nav-link" href="home.jsp">Home</a>
+            </li>
+            <li class="nav-item">
+                  <a class="nav-link" href="inventory">Inventory</a>
+            </li>
+            <li class="nav-item">
+                  <a class="nav-link" href="showReports">Report</a>
+            </li>
+            <li class="nav-item">
+                  <a class="nav-link" href="showAccount">Account</a>
+            </li>
+          </ul>
+          <ul align="right" class="navbar-nav"><a class="navbar-brand" href="logout">Logout</a></ul>
+    </nav>
+    <br><br>
 
 <div align="center">
 		<h3><u>-Reports-</u></h3><br>
@@ -109,7 +113,7 @@
 		<c:if test="${orderResults!=null}">
 			
 			<c:forEach var="o" items="${orderResults}" >
-			<table border="2" width="500">
+			<table border="2" class="table table-dark" width="500">
 	 			<tr>
                 	<th>Customer name: </th>
                 	<td>

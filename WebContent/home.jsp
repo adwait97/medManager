@@ -25,19 +25,23 @@
 <body>
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link" href="inventory">Inventory</a>
-    </li>
-    <li class="nav-item">
-      	<a class="nav-link" href="showReports">Reports</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="showAccount">Account</a>
-    </li>
-  </ul>
-  <ul align="right" class="navbar-nav"><a class="navbar-brand" href="logout">Logout</a></ul>
-</nav><hr><br>
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                  <a class="nav-link" href="home.jsp">Home</a>
+            </li>
+            <li class="nav-item">
+                  <a class="nav-link" href="inventory">Inventory</a>
+            </li>
+            <li class="nav-item">
+                  <a class="nav-link" href="showReports">Report</a>
+            </li>
+            <li class="nav-item">
+                  <a class="nav-link" href="showAccount">Account</a>
+            </li>
+          </ul>
+          <ul align="right" class="navbar-nav"><a class="navbar-brand" href="logout">Logout</a></ul>
+    </nav>
+    <br><br>
 
 	<div align="center">
 	<h1>
@@ -45,7 +49,7 @@
     </h1><br><br>
     <h2><b>Fill Order</b></h2>
         <form action="addOrder" method="post">
-        <table border="1">    
+        <table border="1" class = "table table-dark">    
             <tr>
                 <th>Customer Name: </th>
                 <td>

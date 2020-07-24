@@ -2,58 +2,58 @@ package models;
 
 public class Managers {
 	
-	public int managerid;
-	public String firstname;
-	public String lastname;
-	public String password;
-	public String email;
+	public static int managerid;
+	public static String firstname;
+	public static String lastname;
+	public static String password;
+	public static String email;
 	
 	public Managers() {}
 	
-	public Managers(int managerid, String firstname) {
-		this.managerid = managerid;
-		this.firstname = firstname;
+	public Managers(int managerId, String firstName) {
+		managerid = managerId;
+		firstname = firstName;
 	}
 	
-	public Managers(int managerid, String firstname, String lastname, String email, String password) {
+	public Managers(int managerId, String firstName, String lastName, String Email, String Password) {
 		super();
-		this.managerid = managerid;
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.password = password;
-		this.email = email;
+		managerid = managerId;
+		firstname = firstName;
+		lastname = lastName;
+		password = Password;
+		email = Email;
 	}
 
 	//getters and setters for Java Bean
-	public int getManagerid() {
+	public static int getManagerid() {
 		return managerid;
 	}
-	public void setManagerid(int managerid) {
-		this.managerid = managerid;
+	public static void setManagerid(int managerId) {
+		managerid = managerId;
 	}
-	public String getFirstname() {
+	public static String getFirstname() {
 		return firstname;
 	}
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
+	public static void setFirstname(String firstName) {
+		firstname = firstName;
 	}
-	public String getLastname() {
+	public static String getLastname() {
 		return lastname;
 	}
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
+	public static void setLastname(String lastName) {
+		lastname = lastName;
 	}
-	public String getPassword() {
+	public static String getPassword() {
 		return password;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public static void setPassword(String Password) {
+		password = Password;
 	}
-	public String getEmail() {
+	public static String getEmail() {
 		return email;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public static void setEmail(String Email) {
+		email = Email;
 	}
 	
 }
