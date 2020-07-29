@@ -14,7 +14,8 @@ import org.mockito.junit.MockitoRule;
 
 public class MMdbDAOtest {
 	
-	// Using mock objects so actual database is not affected
+	// Using mock objects so testing over server is possible
+	// and actual database is not affected
 	@InjectMocks private MMdbDAO tDAO;
 	
 	// initializes mocks and validates usage
