@@ -3,8 +3,6 @@
  * prevent the unit test methods from disturbing the state or altering the 
  * actual database.
  * 
- * This is the only test class that is working, and did not change the structure of any other classes
- * 
  * @author Adwait Wadekar
  */
 import static org.junit.Assert.*;
